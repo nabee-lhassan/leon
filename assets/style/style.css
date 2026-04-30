@@ -83,6 +83,8 @@
     padding: 6px 16px; border-radius: 50px; margin-bottom: 24px;
     letter-spacing: 1px; text-transform: uppercase;
   }
+
+  
   .hero-badge span { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 1.5s infinite; }
 
   @keyframes pulse {
