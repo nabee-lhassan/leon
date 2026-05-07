@@ -63,20 +63,72 @@
   </div>
 </section>
 
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 <!-- BRANDS / TRUST BAR -->
-<div class="brands">
-  <div class="brands-inner">
-    <div class="brand-item">★★★★★ GOOGLE REVIEWS</div>
-    <div class="brand-item">|</div>
-    <div class="brand-item">ECO CERTIFIED</div>
-    <div class="brand-item">|</div>
-    <div class="brand-item">INSURED & BONDED</div>
-    <div class="brand-item">|</div>
-    <div class="brand-item">FAMILY OWNED</div>
-    <div class="brand-item">|</div>
-    <div class="brand-item">100% SATISFACTION</div>
+<div class="swiper brands-slider">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">★★★★★ GOOGLE REVIEWS</div>
+    <div class="swiper-slide">ECO CERTIFIED</div>
+    <div class="swiper-slide">INSURED & BONDED</div>
+    <div class="swiper-slide">FAMILY OWNED</div>
+    <div class="swiper-slide">100% SATISFACTION</div>
+    
+    <div class="swiper-slide">★★★★★ GOOGLE REVIEWS</div>
+    <div class="swiper-slide">ECO CERTIFIED</div>
+    <div class="swiper-slide">INSURED & BONDED</div>
+    <div class="swiper-slide">FAMILY OWNED</div>
+    <div class="swiper-slide">100% SATISFACTION</div>
+    
   </div>
 </div>
+
+<style>
+.brands-slider {
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+.brands-slider .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.brands-slider .swiper-slide {
+  width: auto !important;
+  padding: 0 40px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #ccc;
+}
+
+.brands-slider .swiper-slide:last-child {
+  border-right: none;
+}
+</style>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+new Swiper(".brands-slider", {
+  slidesPerView: "auto",
+  spaceBetween: 0,
+  loop: true,
+  speed: 4000,
+
+  autoplay: {
+    delay: 0,
+    disableOnInteraction: false,
+  },
+});
+</script>
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works" id="how-it-works">
