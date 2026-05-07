@@ -42,19 +42,59 @@
         <a href="#how-it-works" class="btn-outline">How It Works</a>
       </div>
       <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">5K<span>+</span></div>
-          <div class="hero-stat-label">Bins Cleaned</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">98<span>%</span></div>
-          <div class="hero-stat-label">Happy Clients</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">10<span>+</span></div>
-          <div class="hero-stat-label">Years Exp.</div>
-        </div>
-      </div>
+  <div>
+    <div class="hero-stat-num"><span class="count" data-target="5000">0</span><span>+</span></div>
+    <div class="hero-stat-label">Bins Cleaned</div>
+  </div>
+  <div>
+    <div class="hero-stat-num"><span class="count" data-target="98">0</span><span>%</span></div>
+    <div class="hero-stat-label">Happy Clients</div>
+  </div>
+  <div>
+    <div class="hero-stat-num"><span class="count" data-target="10">0</span><span>+</span></div>
+    <div class="hero-stat-label">Years Exp.</div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll('.count');
+  const speed = 200; // Jitna zyada number, utni tez animation
+
+  const startCounters = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+
+        // Speed calculation
+        const inc = target / speed;
+
+        if (count < target) {
+          // Number ko thoda badhayein
+          counter.innerText = Math.ceil(count + inc);
+          // Har 1ms baad function dubara chalayein
+          setTimeout(updateCount, 15);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  // Intersection Observer: Jab user scroll karke stats tak pahunche, tabhi animation chale
+  const observer = new IntersectionObserver((entries) => {
+    if(entries[0].isIntersecting) {
+      startCounters();
+      observer.disconnect(); // Ek baar chalne ke baad band ho jaye
+    }
+  }, { threshold: 0.5 });
+
+  observer.observe(document.querySelector('.hero-stats'));
+});
+</script>
+
     </div>
     <div class="hero-image-wrap">
       <!-- Logo image — replace src with actual path -->

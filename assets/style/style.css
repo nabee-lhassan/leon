@@ -58,7 +58,7 @@
     min-height: 100vh;
     background: var(--navy);
     display: flex; align-items: center;
-    padding: 130px 5% 60px;
+    padding: 190px 5% 60px;
     position: relative;
     overflow: hidden;
   }
