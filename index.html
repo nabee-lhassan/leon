@@ -38,8 +38,8 @@
       <h1>Trash Bins <span>Sparkling</span> Clean Every Time</h1>
       <p>Professional pressure-washing for residential and commercial trash bins. We eliminate odors, bacteria, and grime — so you don't have to.</p>
       <div class="hero-btns">
-        <a href="#pricing" class="btn-primary">Get a Free Quote</a>
-        <a href="#how-it-works" class="btn-outline">How It Works</a>
+        <a id="open_quote" class="btn-primary">Get a Free Quote</a>
+        <a id="open_howItWorks" class="btn-outline">How It Works</a>
       </div>
       <div class="hero-stats">
   <div>
@@ -103,72 +103,89 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<!-- BRANDS / TRUST BAR -->
+<!-- Swiper -->
 <div class="swiper brands-slider">
   <div class="swiper-wrapper">
-    <div class="swiper-slide">★★★★★ GOOGLE REVIEWS</div>
-    <div class="swiper-slide">ECO CERTIFIED</div>
-    <div class="swiper-slide">INSURED & BONDED</div>
-    <div class="swiper-slide">FAMILY OWNED</div>
-    <div class="swiper-slide">100% SATISFACTION</div>
     
     <div class="swiper-slide">★★★★★ GOOGLE REVIEWS</div>
     <div class="swiper-slide">ECO CERTIFIED</div>
     <div class="swiper-slide">INSURED & BONDED</div>
     <div class="swiper-slide">FAMILY OWNED</div>
     <div class="swiper-slide">100% SATISFACTION</div>
-    
+    <div class="swiper-slide">24/7 EMERGENCY SERVICE</div>
+    <div class="swiper-slide">LICENSED & VERIFIED</div>
+
   </div>
 </div>
 
-<style>
-.brands-slider {
-  padding: 20px 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  background: #fff;
-}
 
-.brands-slider .swiper-wrapper {
-  transition-timing-function: linear !important;
-}
 
-.brands-slider .swiper-slide {
-  width: auto !important;
-  padding: 0 40px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid #ccc;
-}
-
-.brands-slider .swiper-slide:last-child {
-  border-right: none;
-}
-</style>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-new Swiper(".brands-slider", {
-  slidesPerView: "auto",
-  spaceBetween: 0,
+const swiper = new Swiper(".brands-slider", {
+  slidesPerView: 4,
+  spaceBetween: 20,
   loop: true,
-  speed: 4000,
+
+  speed: 5000, // smooth speed
 
   autoplay: {
     delay: 0,
     disableOnInteraction: false,
   },
+
+  allowTouchMove: false,
+
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 3,
+    },
+    1024: {
+      slidesPerView: 4,
+    }
+  }
 });
 </script>
+
+<style>
+  .brands-slider {
+  background: #ffffff;
+  padding: 5px 0;
+}
+
+.brands-slider .swiper-slide {
+  background: #ffffff;
+  color: #111111;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  /* border: 1px solid #e5e5e5; */
+  border-right: 1px solid black;
+  /* border-radius: 10px; */
+  padding: 14px 20px;
+  /* box-shadow: 0 2px 10px rgba(0,0,0,0.05); */
+  /* transition: 0.3s ease; */
+}
+.brands-slider .swiper-wrapper{
+  transition-timing-function: linear !important;
+}
+
+.brands-slider .swiper-slide{
+  text-align: center;
+  font-weight: 600;
+}
+</style>
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works" id="how-it-works">
@@ -769,5 +786,354 @@ new Swiper(".brands-slider", {
     observer.observe(el);
   });
 </script>
+
+
+<!-- popup form -->
+ 
+
+<!-- Quote Popup -->
+<div id="popupOverlay" class="popup-overlay">
+
+  <div class="popup-box">
+
+    <button id="closePopup" class="close-btn">&times;</button>
+
+    <h2>Request a Quote</h2>
+
+    <form class="popup-form">
+
+      <input type="text" placeholder="Your Name" required>
+
+      <input type="email" placeholder="Your Email" required>
+
+      <input type="tel" placeholder="Phone Number" required>
+
+      <textarea placeholder="Your Message"></textarea>
+
+      <button type="submit" class="submit-btn">
+        Submit
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<style>
+/* Button */
+.popup-btn{
+  background:#111;
+  color:#fff;
+  padding:12px 24px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* Overlay */
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s ease;
+  z-index:9999;
+}
+
+/* Active Popup */
+.popup-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+/* Popup Box */
+.popup-box{
+  background:#fff;
+  width:90%;
+  max-width:500px;
+  padding:40px 30px;
+  border-radius:16px;
+  position:relative;
+  transform:translateY(30px);
+  transition:0.3s ease;
+}
+
+.popup-overlay.active .popup-box{
+  transform:translateY(0);
+}
+
+/* Close Button */
+.close-btn{
+  position:absolute;
+  top:12px;
+  right:14px;
+  background:none;
+  border:none;
+  font-size:28px;
+  cursor:pointer;
+  color:#111;
+}
+
+/* Form */
+.popup-form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.popup-form input,
+.popup-form textarea{
+  width:100%;
+  padding:14px 16px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
+}
+
+.popup-form textarea{
+  min-height:120px;
+  resize:none;
+}
+
+/* Submit */
+.submit-btn{
+  background:#111;
+  color:#fff;
+  border:none;
+  padding:14px;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+.submit-btn:hover{
+  opacity:0.9;
+}
+</style>
+
+<script>
+const openBtn = document.getElementById("open_quote");
+const closeBtn = document.getElementById("closePopup");
+const popup = document.getElementById("popupOverlay");
+
+// Open Popup
+openBtn.addEventListener("click", () => {
+  popup.classList.add("active");
+});
+
+// Close Popup Button
+closeBtn.addEventListener("click", () => {
+  popup.classList.remove("active");
+});
+
+// Outside Click Close
+popup.addEventListener("click", (e) => {
+  if (e.target === popup) {
+    popup.classList.remove("active");
+  }
+});
+</script>
+
+<!-- how it work popup -->
+
+
+
+<!-- Popup -->
+<div id="infoPopupOverlay" class="popup-overlay">
+
+  <div class="popup-box">
+
+    <button id="closeInfoPopup" class="close-btn">&times;</button>
+
+    <h2>How It Works</h2>
+
+    <p class="popup-description">
+      We make the process simple and hassle-free. Follow these easy steps
+      to get started with our service.
+    </p>
+
+    <div class="steps-wrapper">
+
+  <div class="step-item">
+    <span>1</span>
+    <div>
+      <h4>Lorem Ipsum Dolor</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, molestiae.</p>
+    </div>
+  </div>
+
+  <div class="step-item">
+    <span>2</span>
+    <div>
+      <h4>Quick & Easy Process</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, praesentium.</p>
+    </div>
+  </div>
+
+  <div class="step-item">
+    <span>3</span>
+    <div>
+      <h4>Professional Support</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, consequatur.</p>
+    </div>
+  </div>
+
+  <div class="step-item">
+    <span>4</span>
+    <div>
+      <h4>Successful Completion</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, commodi.</p>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+<style>
+.popup-btn{
+  background:#111;
+  color:#fff;
+  padding:12px 24px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* Overlay */
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s ease;
+  z-index:9999;
+  padding:20px;
+}
+
+/* Active */
+.popup-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+/* Popup Box */
+.popup-box{
+  background:#fff;
+  width:100%;
+  max-width:650px;
+  padding:40px 30px;
+  border-radius:16px;
+  position:relative;
+  transform:translateY(30px);
+  transition:0.3s ease;
+}
+
+.popup-overlay.active .popup-box{
+  transform:translateY(0);
+}
+
+/* Close */
+.close-btn{
+  position:absolute;
+  top:12px;
+  right:14px;
+  background:none;
+  border:none;
+  font-size:28px;
+  cursor:pointer;
+  color:#111;
+}
+
+/* Content */
+.popup-box h2{
+  margin-bottom:15px;
+  color:#111;
+}
+
+.popup-description{
+  color:#555;
+  margin-bottom:30px;
+  line-height:1.7;
+}
+
+/* Steps */
+.steps-wrapper{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.step-item{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  border:1px solid #eee;
+  padding:10px;
+  border-radius:12px;
+}
+
+.step-item span{
+  min-width:42px;
+  height:42px;
+  background:#3ab54a;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+
+.step-item h4{
+  margin-bottom:6px;
+  color:#111;
+}
+
+.step-item p{
+  color:#666;
+  line-height:1.6;
+}
+</style>
+
+<script>
+const openInfoBtn = document.getElementById("open_howItWorks");
+const closeInfoBtn = document.getElementById("closeInfoPopup");
+const infoPopup = document.getElementById("infoPopupOverlay");
+
+// Open
+openInfoBtn.addEventListener("click", () => {
+  infoPopup.classList.add("active");
+});
+
+// Close Button
+closeInfoBtn.addEventListener("click", () => {
+  infoPopup.classList.remove("active");
+});
+
+// Outside Click Close
+infoPopup.addEventListener("click", (e) => {
+  if (e.target === infoPopup) {
+    infoPopup.classList.remove("active");
+  }
+});
+</script>
+
+
 </body>
 </html>
